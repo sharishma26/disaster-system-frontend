@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+
+    Disaster Dashboard
+    
+
+  </title>
+
+  <!-- Google Font -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Chart.js -->
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Leaflet Map -->
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  >
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <style>
+
+    *{
+
+      margin:0;
+
+      padding:0;
+
+      box-sizing:border-box;
+    }
+
+    body{
+
+      font-family:'Poppins', sans-serif;
+
+      background:#f4f7fc;
+
+      padding:30px;
+    }
+
+    h1{
+
+      text-align:center;
+
+      color:#003366;
+
+      margin-bottom:25px;
+
+      font-size:40px;
+    }
+
+    /* Search */
+
+    #searchInput{
+
+      width:100%;
+
+      padding:15px;
+
+      border-radius:10px;
+
+      border:1px solid #ccc;
+
+      margin-bottom:30px;
+
+      font-size:16px;
+    }
+
+    /* Statistics */
+
+    .stats{
+
+      display:flex;
+
+      gap:20px;
+
+      flex-wrap:wrap;
+
+      margin-bottom:30px;
+    }
+
+    .stat-card{
+
+      flex:1;
+
+      min-width:220px;
+
+      background:white;
+
+      padding:25px;
+
+      border-radius:15px;
+
+      text-align:center;
+
+      box-shadow:
+        0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .stat-card h2{
+
+      color:#0d47a1;
+
+      font-size:40px;
+
+      margin-bottom:10px;
+    }
+
+    .stat-card p{
+
+      color:#555;
+
+      font-size:18px;
+    }
+
+    /* Chart */
+
+    .chart-container{
+
+      background:white;
+
+      padding:20px;
+
+      border-radius:15px;
+
+      margin-bottom:30px;
+
+      box-shadow:
+        0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Map */
+
+    #map{
+
+      height:500px;
+
+      width:100%;
+
+      border-radius:15px;
+
+      margin-bottom:30px;
+
+      box-shadow:
+        0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Incident Cards */
+
+    #incidentList{
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(auto-fit,minmax(320px,1fr));
+
+      gap:20px;
+    }
+
+    .card{
+
+      background:white;
+
+      padding:20px;
+
+      border-radius:15px;
+
+      box-shadow:
+        0 4px 10px rgba(0,0,0,0.1);
+
+      transition:0.3s;
+    }
+
+    .card:hover{
+
+      transform:translateY(-5px);
+    }
+
+    .card h2{
+
+      color:#0d47a1;
+
+      margin-bottom:15px;
+    }
+
+    .card p{
+
+      margin:10px 0;
+
+      font-size:15px;
+    }
+
+    /* Image */
+
+    .incident-image{
+
+      width:100%;
+
+      height:220px;
+
+      object-fit:cover;
+
+      border-radius:10px;
+
+      margin-top:15px;
+
+      margin-bottom:15px;
+    }
+
+    /* Buttons */
+
+    button{
+
+      padding:10px 15px;
+
+      border:none;
+
+      border-radius:8px;
+
+      color:white;
+
+      cursor:pointer;
+
+      margin-top:10px;
+
+      margin-right:10px;
+
+      font-size:14px;
+    }
+
+    .delete-btn{
+
+      background:#e53935;
+    }
+
+    .delete-btn:hover{
+
+      background:#c62828;
+    }
+
+    .resolve-btn{
+
+      background:#43a047;
+    }
+
+    .resolve-btn:hover{
+
+      background:#2e7d32;
+    }
+
+    /* Status Colors */
+
+    .status{
+
+      display:inline-block;
+
+      padding:8px 15px;
+
+      border-radius:20px;
+
+      color:white;
+
+      font-weight:bold;
+
+      margin-top:10px;
+    }
+
+    .pending{
+
+      background:#ff9800;
+    }
+
+    .progress{
+
+      background:#2196f3;
+    }
+
+    .resolved{
+
+      background:#4caf50;
+    }
+    #liveAlert{
+
+  background:#d50000;
+
+  color:white;
+
+  padding:15px;
+
+  border-radius:10px;
+
+  margin-bottom:25px;
+
+  font-size:18px;
+
+  font-weight:bold;
+
+  display:none;
+
+  animation:blink 1s infinite;
+}
+
+@keyframes blink{
+
+  50%{
+
+    opacity:0.6;
+  }
+}
+
+  </style>
+
+</head>
+
+<body>
+
+  <h1>
+
+    🚨 Disaster Incident Dashboard
+  </h1>
+
+  <div id="liveAlert"></div>
+
+  <button onclick="logout()">
+
+  Logout
+
+</button>
+
+  <!-- Search -->
+
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="Search by disaster type or location..."
+    onkeyup="searchIncidents()"
+  >
+
+  <!-- Statistics -->
+
+  <div class="stats">
+
+    <div class="stat-card">
+
+      <h2 id="totalIncidents">
+
+        0
+
+      </h2>
+
+      <p>
+
+        Total Incidents
+
+      </p>
+
+    </div>
+
+    <div class="stat-card">
+
+      <h2 id="pendingIncidents">
+
+        0
+
+      </h2>
+
+      <p>
+
+        Pending
+
+      </p>
+
+    </div>
+
+    <div class="stat-card">
+
+      <h2 id="resolvedIncidents">
+
+        0
+
+      </h2>
+
+      <p>
+
+        Resolved
+
+      </p>
+
+    </div>
+
+  </div>
+
+ <div class="chart-container">
+
+  <h2>🚁 Rescue Requests</h2>
+
+  <div id="rescueList"></div>
+
+</div>
+
+  <!-- Chart -->
+
+  <div class="chart-container">
+
+    <canvas id="incidentChart"></canvas>
+
+  </div>
+
+  <div class="chart-container">
+
+  <h2>📊 Disaster Analytics</h2>
+
+  <canvas id="pieChart"></canvas>
+
+  <br><br>
+
+  <canvas id="barChart"></canvas>
+
+</div>
+
+<button onclick="downloadReport()">
+
+📄 Download PDF Report
+
+</button>
+
+  <!-- Map -->
+
+  <div id="map"></div>
+
+  <!-- Incident Cards -->
+
+  <div id="incidentList"></div>
+   
+  <div class="chart-container">
+
+  <h2>🚨 SOS Alerts</h2>
+
+  <div id="sosList"></div>
+
+</div>
+  
+  
+  <audio id="alertSound">
+
+  <source
+    src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"
+    type="audio/ogg"
+  >
+
+</audio>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script src="admin.js"></script>
+
+  <script>
+  window.onload = function () {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn !== "true") {
+      window.location.href = "admin-login.html";
+    }
+  };
+</script>
+
+</body>
+
+</html>

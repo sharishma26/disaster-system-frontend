@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Admin Login</title>
+
+  <!-- Google Font -->
+
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+
+      font-family:'Poppins', sans-serif;
+
+      background:#f4f7fc;
+
+      display:flex;
+
+      justify-content:center;
+
+      align-items:center;
+
+      height:100vh;
+    }
+
+    .login-box{
+
+      background:white;
+
+      padding:40px;
+
+      width:100%;
+
+      max-width:400px;
+
+      border-radius:15px;
+
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1{
+
+      text-align:center;
+
+      color:#0d47a1;
+
+      margin-bottom:25px;
+    }
+
+    input{
+
+      width:100%;
+
+      padding:12px;
+
+      margin-bottom:20px;
+
+      border-radius:8px;
+
+      border:1px solid #ccc;
+
+      font-size:15px;
+
+      font-family:'Poppins', sans-serif;
+    }
+
+    button{
+
+      width:100%;
+
+      padding:12px;
+
+      background:#0d47a1;
+
+      color:white;
+
+      border:none;
+
+      border-radius:8px;
+
+      cursor:pointer;
+
+      font-size:16px;
+
+      font-family:'Poppins', sans-serif;
+    }
+
+    button:hover{
+
+      background:#08306b;
+    }
+
+    .error{
+
+      color:red;
+
+      text-align:center;
+
+      margin-top:15px;
+    }
+
+    .links{
+
+      text-align:center;
+
+      margin-top:20px;
+    }
+
+    .links a{
+
+      color:#0d47a1;
+
+      text-decoration:none;
+
+      font-weight:bold;
+    }
+    @media(max-width:768px){
+
+  body{
+
+    padding:15px;
+  }
+
+  .container,
+  .login-box,
+  .register-box,
+  .forgot-box,
+  .reset-box{
+
+    width:100%;
+
+    padding:25px;
+  }
+
+  h1{
+
+    font-size:28px;
+  }
+
+  .stats-grid,
+  .tips-grid,
+  .shelter-grid,
+  .emergency-section{
+
+    grid-template-columns:1fr;
+  }
+
+  button{
+
+    font-size:14px;
+  }
+}
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="login-box">
+
+    <h1>🔐 Admin Login</h1>
+
+    <!-- Email -->
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Enter Email"
+    >
+
+    <!-- Password -->
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Enter Password"
+    >
+
+    <!-- Login Button -->
+
+    <button onclick="login()">
+
+      Login
+
+    </button>
+
+    <!-- Forgot Password -->
+
+    <div class="links">
+
+    </div>
+
+    <!-- Error Message -->
+
+    <p class="error"
+       id="errorMessage"></p>
+
+  </div>
+
+  <script>
+
+    function login(){
+
+      const email =
+
+        document.getElementById(
+          "email"
+        ).value;
+
+      const password =
+
+        document.getElementById(
+          "password"
+        ).value;
+
+      // Demo Login
+
+      if(
+
+        email === "admin@gmail.com"
+
+        &&
+
+        password === "admin123"
+
+      ){
+
+        alert(
+          "✅ Login Successful"
+        );
+        localStorage.setItem(
+           "isLoggedIn",
+           "true"
+         ); 
+        window.location.href =
+          "admin.html";
+      }
+
+      else{
+
+        document.getElementById(
+          "errorMessage"
+        ).innerText =
+
+          "❌ Invalid Email or Password";
+      }
+    }
+
+  </script>
+<script>
+function login(){
+
+  const email =
+    document.getElementById("email").value;
+
+  const password =
+    document.getElementById("password").value;
+
+  if(
+    email === "admin@gmail.com" &&
+    password === "admin123"
+  ){
+
+    localStorage.setItem(
+      "isLoggedIn",
+      "true"
+    );
+
+    window.location.href =
+      "admin.html";
+  }
+
+  else{
+
+    document.getElementById(
+      "errorMessage"
+    ).innerText =
+      "❌ Invalid Email or Password";
+  }
+}
+</script>
+</body>
+
+</html>

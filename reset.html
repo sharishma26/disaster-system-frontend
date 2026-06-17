@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Reset Password</title>
+
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+
+      font-family:'Poppins', sans-serif;
+
+      background:#f4f7fc;
+
+      display:flex;
+
+      justify-content:center;
+
+      align-items:center;
+
+      height:100vh;
+    }
+
+    .box{
+
+      background:white;
+
+      padding:40px;
+
+      width:100%;
+
+      max-width:400px;
+
+      border-radius:15px;
+
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1{
+
+      text-align:center;
+
+      color:#0d47a1;
+
+      margin-bottom:25px;
+    }
+
+    input{
+
+      width:100%;
+
+      padding:12px;
+
+      margin-bottom:20px;
+
+      border-radius:8px;
+
+      border:1px solid #ccc;
+
+      font-size:15px;
+    }
+
+    button{
+
+      width:100%;
+
+      padding:12px;
+
+      background:#43a047;
+
+      color:white;
+
+      border:none;
+
+      border-radius:8px;
+
+      font-size:16px;
+
+      cursor:pointer;
+    }
+
+    button:hover{
+
+      background:#2e7d32;
+    }
+    @media(max-width:768px){
+
+  body{
+
+    padding:15px;
+  }
+
+  .container,
+  .login-box,
+  .register-box,
+  .forgot-box,
+  .reset-box{
+
+    width:100%;
+
+    padding:25px;
+  }
+
+  h1{
+
+    font-size:28px;
+  }
+
+  .stats-grid,
+  .tips-grid,
+  .shelter-grid,
+  .emergency-section{
+
+    grid-template-columns:1fr;
+  }
+
+  button{
+
+    font-size:14px;
+  }
+}
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="box">
+
+    <h1>Reset Password</h1>
+
+    <input
+      type="password"
+      id="newPassword"
+      placeholder="Enter New Password"
+    >
+
+    <input
+      type="password"
+      id="confirmPassword"
+      placeholder="Confirm Password"
+    >
+
+    <button onclick="resetPassword()">
+
+      Reset Password
+
+    </button>
+
+  </div>
+
+  <script>
+
+    function resetPassword(){
+
+      const newPassword =
+
+        document.getElementById(
+          "newPassword"
+        ).value;
+
+      const confirmPassword =
+
+        document.getElementById(
+          "confirmPassword"
+        ).value;
+
+      if(
+
+        newPassword === ""
+
+        ||
+
+        confirmPassword === ""
+
+      ){
+
+        alert(
+          "Please fill all fields"
+        );
+
+        return;
+      }
+
+      if(
+
+        newPassword !== confirmPassword
+
+      ){
+
+        alert(
+          "Passwords do not match"
+        );
+
+        return;
+      }
+
+      alert(
+        "✅ Password Reset Successful"
+      );
+
+      window.location.href =
+        "login.html";
+    }
+
+  </script>
+
+</body>
+
+</html>

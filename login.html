@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>User Login</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+
+    body{
+
+      margin:0;
+
+      font-family:'Poppins', sans-serif;
+
+      background:#f4f7fc;
+
+      display:flex;
+
+      justify-content:center;
+
+      align-items:center;
+
+      height:100vh;
+    }
+
+    .login-box{
+
+      background:white;
+
+      padding:40px;
+
+      width:350px;
+
+      border-radius:15px;
+
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1{
+
+      text-align:center;
+
+      color:#0d47a1;
+
+      margin-bottom:25px;
+    }
+
+    input{
+
+      width:100%;
+
+      padding:12px;
+
+      margin-bottom:20px;
+
+      border-radius:8px;
+
+      border:1px solid #ccc;
+
+      font-size:15px;
+
+      font-family:'Poppins', sans-serif;
+    }
+
+    button{
+
+      width:100%;
+
+      padding:12px;
+
+      background:#0d47a1;
+
+      color:white;
+
+      border:none;
+
+      border-radius:8px;
+
+      cursor:pointer;
+
+      font-size:16px;
+
+      font-family:'Poppins', sans-serif;
+    }
+
+    button:hover{
+
+      background:#08306b;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="login-box">
+
+    <h1>User Login</h1>
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Enter email"
+    >
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Enter Password"
+    >
+
+    <button onclick="userLogin()">
+
+      Login
+    </button>
+<p style="text-align:center; margin-top:15px;">
+  <a href="forgot-password.html">
+    Forgot Password?
+  </a>
+</p>
+
+  </div>
+
+  <script src="user-login.js"></script>
+
+</body>
+
+</html>
