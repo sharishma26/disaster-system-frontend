@@ -40,7 +40,54 @@ p{
 .btn:hover{
   background:#08306b;
 }
+.features{
 
+  margin-top:60px;
+  text-align:center;
+}
+
+.features h2{
+
+  color:#0d47a1;
+  margin-bottom:30px;
+  font-size:32px;
+}
+
+.feature-container{
+
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(250px,1fr));
+
+  gap:20px;
+}
+
+.feature-card{
+
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+
+  transition:0.3s;
+}
+
+.feature-card:hover{
+
+  transform:translateY(-8px);
+}
+
+.feature-card h3{
+
+  color:#0d47a1;
+  margin-bottom:15px;
+}
+
+.feature-card p{
+
+  color:#555;
+  line-height:1.6;
+}
 </style>
 
 </head>
@@ -57,18 +104,84 @@ Resource Coordination Platform
 </p>
 
 <a href="register.html" class="btn">
-Register
+
+    Register
+
 </a>
 
 <a href="login.html" class="btn">
-User Login
+  
+    User Login
+
 </a>
 
 <a href="admin-login.html" class="btn">
-Admin Login
+
+    Admin Login
+
 </a>
 
 </div>
+
+<!-- Features Section -->
+
+<section class="features">
+
+  <h2>🚀 Key Features</h2>
+
+  <div class="feature-container">
+
+    <div class="feature-card">
+      <h3>🚨 Disaster Reporting</h3>
+      <p>
+        Report disasters instantly with location,
+        severity level, description, and images.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <h3>📍 Live Incident Tracking</h3>
+      <p>
+        Monitor disaster incidents in real time
+        using an interactive map dashboard.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <h3>🚁 Rescue Coordination</h3>
+      <p>
+        Assign rescue teams quickly and track
+        emergency response activities.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <h3>🆘 Emergency SOS</h3>
+      <p>
+        Send instant SOS alerts and emergency
+        rescue requests during critical situations.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <h3>🌦️ Weather Monitoring</h3>
+      <p>
+        Get live weather conditions and alerts
+        to improve disaster preparedness.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <h3>📊 Analytics Dashboard</h3>
+      <p>
+        View disaster statistics, reports,
+        and resource utilization insights.
+      </p>
+    </div>
+
+  </div>
+
+</section>
 
 </body>
 </html>
