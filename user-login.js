@@ -35,7 +35,7 @@ async function userLogin(){
       );
 
       window.location.href =
-        "index.html";
+        "dashboard.html";
     }
 
   }

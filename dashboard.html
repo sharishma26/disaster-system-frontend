@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Disaster Reporting System</title>
+
+  <!-- Google Font -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+
+      font-family:'Poppins', sans-serif;
+
+      background:#f4f7fc;
+
+      padding:30px;
+    }
+
+    /* Alert Banner */
+
+    .alert-banner{
+
+      background:#e53935;
+
+      color:white;
+
+      padding:15px;
+
+      text-align:center;
+
+      font-size:18px;
+
+      font-weight:bold;
+
+      margin-bottom:30px;
+
+      border-radius:10px;
+
+      animation:blink 1.5s infinite;
+    }
+
+    @keyframes blink{
+
+      50%{
+
+        opacity:0.7;
+      }
+    }
+
+    /* Weather Section */
+
+    .weather-card{
+
+      background:white;
+
+      padding:25px;
+
+      border-radius:15px;
+
+      margin-bottom:30px;
+
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+
+      text-align:center;
+    }
+
+    .weather-card h2{
+
+      color:#0d47a1;
+
+      margin-bottom:15px;
+    }
+
+    .weather-card p{
+
+      margin:10px 0;
+
+      font-size:18px;
+    }
+
+    /* Form Container */
+
+    .container{
+
+      background:white;
+
+      padding:40px;
+
+      width:100%;
+
+      max-width:500px;
+
+      margin:auto;
+
+      border-radius:15px;
+
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1{
+
+      text-align:center;
+
+      margin-bottom:25px;
+
+      color:#0d47a1;
+    }
+
+    input,
+    textarea,
+    select{
+
+      width:100%;
+
+      padding:12px;
+
+      margin-bottom:20px;
+
+      border-radius:8px;
+
+      border:1px solid #ccc;
+
+      font-size:15px;
+
+      font-family:'Poppins', sans-serif;
+    }
+
+    textarea{
+
+      resize:none;
+
+      height:120px;
+    }
+
+    button{
+
+      width:100%;
+
+      padding:12px;
+
+      background:#0d47a1;
+
+      color:white;
+
+      border:none;
+
+      border-radius:8px;
+
+      font-size:16px;
+
+      cursor:pointer;
+
+      font-family:'Poppins', sans-serif;
+    }
+
+    button:hover{
+
+      background:#08306b;
+    }
+
+    /* Emergency Section */
+
+    .emergency-section{
+
+      margin-top:40px;
+
+      display:grid;
+
+      grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+
+      gap:20px;
+    }
+
+    .contact-card{
+
+      background:white;
+
+      padding:20px;
+
+      border-radius:12px;
+
+      text-align:center;
+
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .contact-card h3{
+
+      margin-bottom:10px;
+
+      color:#0d47a1;
+    }
+
+    .contact-card p{
+
+      font-size:24px;
+
+      font-weight:bold;
+
+      color:#e53935;
+    }
+    .theme-toggle{
+
+  text-align:right;
+
+  margin-bottom:20px;
+}
+.language-buttons{
+
+  display:flex;
+
+  gap:15px;
+
+  flex-wrap:wrap;
+
+  margin-bottom:25px;
+}
+.dark-mode{
+
+  background:#121212;
+
+  color:white;
+}
+
+.dark-mode .container,
+.dark-mode .weather-card,
+.dark-mode .contact-card{
+
+  background:#1e1e1e;
+
+  color:white;
+}
+
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select{
+
+  background:#2c2c2c;
+
+  color:white;
+
+  border:1px solid #555;
+}
+.voice-btn{
+
+  background:#ff9800;
+
+  color:white;
+
+  border:none;
+
+  padding:12px 20px;
+
+  border-radius:10px;
+
+  font-size:16px;
+
+  cursor:pointer;
+
+  margin-bottom:25px;
+
+  font-family:'Poppins', sans-serif;
+}
+
+.voice-btn:hover{
+
+  background:#f57c00;
+}
+.sos-btn{
+
+  width:100%;
+
+  background:#d50000;
+
+  color:white;
+
+  border:none;
+
+  padding:18px;
+
+  font-size:22px;
+
+  font-weight:bold;
+
+  border-radius:15px;
+
+  cursor:pointer;
+
+  margin-bottom:30px;
+
+  animation:pulse 1s infinite;
+}
+
+.sos-btn:hover{
+
+  background:#b71c1c;
+}
+
+@keyframes pulse{
+
+  50%{
+
+    transform:scale(1.03);
+  }
+}
+.news-section{
+
+  background:white;
+
+  padding:25px;
+
+  border-radius:15px;
+
+  margin-bottom:30px;
+
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.news-section h2{
+
+  color:#0d47a1;
+
+  margin-bottom:20px;
+}
+
+.news-card{
+
+  padding:15px;
+
+  border-bottom:1px solid #ddd;
+}
+
+.news-card h3{
+
+  margin-bottom:10px;
+
+  color:#e53935;
+}
+
+.news-card p{
+
+  margin-bottom:10px;
+}
+
+.news-card a{
+
+  color:#0d47a1;
+
+  text-decoration:none;
+
+  font-weight:bold;
+}
+.tips-section{
+
+  margin-top:40px;
+
+  background:white;
+
+  padding:30px;
+
+  border-radius:15px;
+
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.tips-section h2{
+
+  text-align:center;
+
+  color:#0d47a1;
+
+  margin-bottom:30px;
+}
+
+.tips-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(220px,1fr));
+
+  gap:20px;
+}
+
+.tip-card{
+
+  background:#f5f5f5;
+
+  padding:20px;
+
+  border-radius:12px;
+}
+
+.tip-card h3{
+
+  margin-bottom:15px;
+
+  color:#e53935;
+}
+
+.tip-card ul{
+
+  padding-left:20px;
+}
+
+.tip-card li{
+
+  margin-bottom:10px;
+}
+.shelter-section{
+
+  margin-top:40px;
+
+  background:white;
+
+  padding:30px;
+
+  border-radius:15px;
+
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.shelter-section h2{
+
+  text-align:center;
+
+  color:#0d47a1;
+
+  margin-bottom:30px;
+}
+
+.shelter-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(250px,1fr));
+
+  gap:20px;
+}
+
+.shelter-card{
+
+  background:#f5f5f5;
+
+  padding:20px;
+
+  border-radius:12px;
+
+  transition:0.3s;
+}
+
+.shelter-card:hover{
+
+  transform:translateY(-5px);
+}
+
+.shelter-card h3{
+
+  color:#e53935;
+
+  margin-bottom:15px;
+}
+
+.shelter-card p{
+
+  margin-bottom:10px;
+}
+.stats-section{
+
+  margin-top:40px;
+
+  background:white;
+
+  padding:30px;
+
+  border-radius:15px;
+
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.stats-section h2{
+
+  text-align:center;
+
+  color:#0d47a1;
+
+  margin-bottom:30px;
+}
+
+.stats-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(220px,1fr));
+
+  gap:20px;
+}
+
+.stats-card{
+
+  background:#f5f5f5;
+
+  padding:25px;
+
+  border-radius:15px;
+
+  text-align:center;
+}
+
+.stats-card h3{
+
+  color:#e53935;
+
+  margin-bottom:15px;
+}
+
+.stats-card p{
+
+  font-size:35px;
+
+  font-weight:bold;
+
+  color:#0d47a1;
+}
+.map-section{
+
+  margin-top:40px;
+
+  background:white;
+
+  padding:30px;
+
+  border-radius:15px;
+
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.map-section h2{
+
+  text-align:center;
+
+  color:#0d47a1;
+
+  margin-bottom:25px;
+}
+.incident-section{
+
+  margin-top:40px;
+
+  background:white;
+
+  padding:30px;
+
+  border-radius:15px;
+
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.incident-section h2{
+
+  text-align:center;
+
+  color:#0d47a1;
+
+  margin-bottom:25px;
+}
+
+.incident-card{
+
+  background:#f5f5f5;
+
+  padding:20px;
+
+  border-radius:12px;
+
+  margin-bottom:20px;
+}
+
+.incident-card h3{
+
+  color:#e53935;
+
+  margin-bottom:10px;
+}
+
+.incident-card p{
+
+  margin-bottom:8px;
+}
+  #severity{
+
+  background:white;
+
+  font-weight:500;
+}
+@media(max-width:768px){
+
+  body{
+
+    padding:15px;
+  }
+
+  .container,
+  .login-box,
+  .register-box,
+  .forgot-box,
+  .reset-box{
+
+    width:100%;
+
+    padding:25px;
+  }
+
+  h1{
+
+    font-size:28px;
+  }
+
+  .stats-grid,
+  .tips-grid,
+  .shelter-grid,
+  .emergency-section{
+
+    grid-template-columns:1fr;
+  }
+
+  button{
+
+    font-size:14px;
+  }
+}
+#nearbyHelp{
+
+  margin-top:20px;
+}
+  </style>
+
+</head>
+
+<body>
+
+  <!-- Live Alert Banner -->
+
+  <div class="alert-banner">
+
+    🚨 ALERT: Heavy Flood Warning in Telangana | Stay Safe
+
+  </div>
+
+  <div style="display:flex; gap:10px; justify-content:center; margin-bottom:20px; flex-wrap:wrap;">
+
+  <a href="register.html">
+    <button style="width:auto;padding:10px 20px;">
+      Register
+    </button>
+  </a>
+
+  <a href="login.html">
+    <button style="width:auto;padding:10px 20px;">
+      User Login
+    </button>
+  </a>
+
+  <a href="admin-login.html">
+    <button style="width:auto;padding:10px 20px;">
+      Admin Login
+    </button>
+  </a>
+
+</div>
+  <div class="theme-toggle">
+
+  <button onclick="toggleTheme()">
+
+    🌙 Toggle Dark Mode
+
+  </button>
+
+</div>
+<!-- Voice Alert Buttons -->
+
+  <div class="language-buttons">
+
+    <button
+      class="voice-btn"
+      onclick="speakAlert('english')"
+    >
+      🔊 English Alert
+    </button>
+
+    <button
+      class="voice-btn"
+      onclick="speakAlert('telugu')"
+    >
+      🔊 Telugu Alert
+    </button>
+
+    <button
+      class="voice-btn"
+      onclick="speakAlert('hindi')"
+    >
+      🔊 Hindi Alert
+    </button>
+
+  </div>
+
+  <!-- Weather Section -->
+
+  <div class="weather-card">
+
+    <h2>🌦️ Current Weather</h2>
+
+    <p id="temperature">Temperature: Loading...</p>
+
+    <p id="condition">Condition: Loading...</p>
+
+    <p id="humidity">Humidity: Loading...</p>
+
+    <p id="wind">Wind Speed: Loading...</p>
+
+  </div>
+  <div class="news-section">
+
+  <h2>📰 Latest Disaster News</h2>
+
+  <div id="newsContainer">
+
+    Loading latest news...
+
+  </div>
+
+</div>
+  <button class="sos-btn" onclick="activateSOS()">
+
+  🚨 SOS EMERGENCY
+
+</button>
+<button onclick="findNearbyHelp()">
+
+  🏥 Find Nearby Hospitals
+
+</button>
+
+<button onclick="requestRescue()">
+
+  🚁 Request Rescue
+
+</button>
+  <!-- Disaster Reporting Form -->
+  <div id="nearbyHelp"></div>
+  <div class="container">
+
+    <h1>Report Disaster</h1>
+
+    <form id="reportForm">
+
+      <select id="disasterType" required>
+
+        <option value="">Select Disaster Type</option>
+
+        <option>Flood</option>
+
+        <option>Earthquake</option>
+
+        <option>Cyclone</option>
+
+        <option>Wildfire</option>
+
+        <option>Landslide</option>
+
+        <option>Tsunami</option>
+
+        <option>Drought</option>
+
+        <option>Fire Accident</option>
+
+      </select>
+
+      <input
+        type="text"
+        id="location"
+        placeholder="Enter State Name"
+        required
+      >
+
+      <textarea
+        id="description"
+        placeholder="Enter Disaster Description"
+        required
+      ></textarea>
+
+      <!-- Image Upload -->
+
+      <input
+        type="file"
+        id="image"
+        accept="image/*"
+        required
+      >
+      
+<select id="severity" required>
+
+  <option value="">
+
+    Select Severity Level
+
+  </option>
+
+  <option value="Low">
+
+    🟢 Low Risk
+
+  </option>
+
+  <option value="Medium">
+
+    🟡 Medium Risk
+
+  </option>
+
+  <option value="High">
+
+    🔴 High Risk
+
+  </option>
+
+</select>
+
+      <button type="submit">
+
+        Submit Report
+
+      </button>
+
+    </form>
+
+    <button onclick="activateSOS()">
+
+  🚨 EMERGENCY SOS
+
+</button>
+
+  </div>
+  <!-- Severity Level -->
+
+
+  <!-- Emergency Contacts -->
+
+  <div class="emergency-section">
+
+    <div class="contact-card">
+
+      <h3>🚑 Ambulance</h3>
+
+      <p>108</p>
+
+    </div>
+
+    <div class="contact-card">
+
+      <h3>🚒 Fire Service</h3>
+
+      <p>101</p>
+
+    </div>
+
+    <div class="contact-card">
+
+      <h3>👮 Police</h3>
+
+      <p>100</p>
+
+    </div>
+
+    <div class="contact-card">
+
+      <h3>🌊 Disaster Management</h3>
+
+      <p>1070</p>
+
+    </div>
+
+  </div>
+  <div class="tips-section">
+
+  <h2>🛟 Disaster Safety Tips</h2>
+
+  <div class="tips-grid">
+
+    <div class="tip-card">
+
+      <h3>🌊 Flood Safety</h3>
+
+      <ul>
+
+        <li>Move to higher ground immediately</li>
+
+        <li>Avoid walking in flood water</li>
+
+        <li>Keep emergency kit ready</li>
+
+      </ul>
+
+    </div>
+
+    <div class="tip-card">
+
+      <h3>🌎 Earthquake Safety</h3>
+
+      <ul>
+
+        <li>Drop, Cover and Hold</li>
+
+        <li>Stay away from windows</li>
+
+        <li>Use stairs instead of lifts</li>
+
+      </ul>
+
+    </div>
+
+    <div class="tip-card">
+
+      <h3>🌀 Cyclone Safety</h3>
+
+      <ul>
+
+        <li>Stay indoors</li>
+
+        <li>Charge mobile phones</li>
+
+        <li>Store drinking water</li>
+
+      </ul>
+
+    </div>
+
+    <div class="tip-card">
+
+      <h3>🔥 Fire Safety</h3>
+
+      <ul>
+
+        <li>Use fire extinguisher</li>
+
+        <li>Do not use elevators</li>
+
+        <li>Call emergency services</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>
+<div class="shelter-grid">
+<div class="shelter-card">
+  <h3>Andhra Pradesh Relief Camp</h3>
+  <p>📍 Vijayawada Community Hall</p>
+  <p>📞 9876543210</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Arunachal Pradesh Shelter</h3>
+  <p>📍 Itanagar Relief Center</p>
+  <p>📞 9876543211</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Assam Flood Camp</h3>
+  <p>📍 Guwahati Stadium</p>
+  <p>📞 9876543212</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Bihar Emergency Shelter</h3>
+  <p>📍 Patna Government School</p>
+  <p>📞 9876543213</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Chhattisgarh Rescue Camp</h3>
+  <p>📍 Raipur Community Hall</p>
+  <p>📞 9876543214</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Goa Shelter Zone</h3>
+  <p>📍 Panaji Relief Center</p>
+  <p>📞 9876543215</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Gujarat Cyclone Camp</h3>
+  <p>📍 Ahmedabad Shelter Point</p>
+  <p>📞 9876543216</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Haryana Emergency Camp</h3>
+  <p>📍 Gurugram Relief Hall</p>
+  <p>📞 9876543217</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Himachal Pradesh Shelter</h3>
+  <p>📍 Shimla Safe Zone</p>
+  <p>📞 9876543218</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Jharkhand Relief Camp</h3>
+  <p>📍 Ranchi Community Center</p>
+  <p>📞 9876543219</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Karnataka Flood Shelter</h3>
+  <p>📍 Bengaluru Rescue Center</p>
+  <p>📞 9876543220</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Kerala Emergency Camp</h3>
+  <p>📍 Kochi Shelter Home</p>
+  <p>📞 9876543221</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Madhya Pradesh Shelter</h3>
+  <p>📍 Bhopal Relief Center</p>
+  <p>📞 9876543222</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Maharashtra Disaster Camp</h3>
+  <p>📍 Mumbai Rescue Hall</p>
+  <p>📞 9876543223</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Tamil Nadu Cyclone Shelter</h3>
+  <p>📍 Chennai Safe Zone</p>
+  <p>📞 9876543224</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Telangana Flood Relief Camp</h3>
+  <p>📍 Hyderabad Shelter Point</p>
+  <p>📞 9876543225</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Uttar Pradesh Relief Center</h3>
+  <p>📍 Lucknow Community Hall</p>
+  <p>📞 9876543226</p>
+</div>
+
+<div class="shelter-card">
+  <h3>West Bengal Cyclone Camp</h3>
+  <p>📍 Kolkata Rescue Center</p>
+  <p>📞 9876543227</p>
+</div>
+<div class="shelter-card">
+  <h3>Manipur Relief Camp</h3>
+  <p>📍 Imphal Community Hall</p>
+  <p>📞 9876543228</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Meghalaya Shelter</h3>
+  <p>📍 Shillong Relief Center</p>
+  <p>📞 9876543229</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Mizoram Emergency Camp</h3>
+  <p>📍 Aizawl Safe Zone</p>
+  <p>📞 9876543230</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Nagaland Rescue Center</h3>
+  <p>📍 Kohima Shelter Point</p>
+  <p>📞 9876543231</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Odisha Cyclone Shelter</h3>
+  <p>📍 Bhubaneswar Relief Camp</p>
+  <p>📞 9876543232</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Punjab Flood Camp</h3>
+  <p>📍 Chandigarh Rescue Hall</p>
+  <p>📞 9876543233</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Rajasthan Relief Center</h3>
+  <p>📍 Jaipur Community Hall</p>
+  <p>📞 9876543234</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Sikkim Emergency Shelter</h3>
+  <p>📍 Gangtok Safe Zone</p>
+  <p>📞 9876543235</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Tripura Relief Camp</h3>
+  <p>📍 Agartala Shelter Point</p>
+  <p>📞 9876543236</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Uttarakhand Rescue Camp</h3>
+  <p>📍 Dehradun Relief Hall</p>
+  <p>📞 9876543237</p>
+</div>
+
+<!-- Union Territories -->
+
+<div class="shelter-card">
+  <h3>Delhi Emergency Shelter</h3>
+  <p>📍 New Delhi Community Center</p>
+  <p>📞 9876543238</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Jammu and Kashmir Shelter</h3>
+  <p>📍 Srinagar Relief Camp</p>
+  <p>📞 9876543239</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Ladakh Safe Zone</h3>
+  <p>📍 Leh Emergency Center</p>
+  <p>📞 9876543240</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Puducherry Relief Center</h3>
+  <p>📍 Puducherry Shelter Hall</p>
+  <p>📞 9876543241</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Andaman and Nicobar Shelter</h3>
+  <p>📍 Port Blair Rescue Camp</p>
+  <p>📞 9876543242</p>
+</div>
+
+<div class="shelter-card">
+  <h3>Lakshadweep Emergency Camp</h3>
+  <p>📍 Kavaratti Safe Zone</p>
+  <p>📞 9876543243</p>
+</div>
+</div>
+<div class="stats-section">
+
+  <h2>📊 Live Disaster Statistics</h2>
+
+  <div class="stats-grid">
+
+    <div class="stats-card">
+
+      <h3>Total Reports</h3>
+
+      <p id="totalReports">0</p>
+
+    </div>
+
+    <div class="stats-card">
+
+      <h3>Flood Cases</h3>
+
+      <p id="floodCount">0</p>
+
+    </div>
+
+    <div class="stats-card">
+
+      <h3>Earthquake Cases</h3>
+
+      <p id="earthquakeCount">0</p>
+
+    </div>
+
+    <div class="stats-card">
+
+      <h3>Cyclone Cases</h3>
+
+      <p id="cycloneCount">0</p>
+
+    </div>
+
+  </div>
+
+</div>
+<div class="map-section">
+
+  <h2>🗺️ Live Disaster Map</h2>
+
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243646.90509638158!2d78.24323209567646!3d17.412608641321997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daea3d57f5%3A0x8f1f0f6a6c5bdb6b!2sHyderabad!5e0!3m2!1sen!2sin!4v1710000000000"
+    width="100%"
+    height="450"
+    style="border:0; border-radius:15px;"
+    allowfullscreen=""
+    loading="lazy"
+  >
+  </iframe>
+
+</div>
+<div class="incident-section">
+
+  <h2>📋 Live Incident Reports</h2>
+
+  <div id="incidentContainer">
+
+    Loading reports...
+
+  </div>
+
+</div>
+  <!-- Weather Script -->
+
+  <script>
+
+    async function getWeather(){
+
+      const apiKey = "1bb8e0a777310ad1de512b0b72842191";
+
+      const city = "Hyderabad";
+
+      const response = await fetch(
+
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+
+      );
+
+      const data = await response.json();
+
+      document.getElementById("temperature").innerText =
+        "Temperature: " + data.main.temp + " °C";
+
+      document.getElementById("condition").innerText =
+        "Condition: " + data.weather[0].main;
+
+      document.getElementById("humidity").innerText =
+        "Humidity: " + data.main.humidity + "%";
+
+      document.getElementById("wind").innerText =
+        "Wind Speed: " + data.wind.speed + " km/h";
+    }
+
+    getWeather();
+
+  </script>
+  <script>
+
+function toggleTheme(){
+
+  document.body.classList.toggle("dark-mode");
+}
+
+</script>
+<script>
+function speakAlert(language){
+
+  let message = "";
+  let targetLang = "en";
+
+  if(language === "english"){
+
+    message =
+      "Warning. Heavy flood alert in Telangana. Please stay safe.";
+
+    targetLang = "en";
+
+  }else if(language === "telugu"){
+
+    message =
+      "హెచ్చరిక. తెలంగాణలో భారీ వరద హెచ్చరిక ఉంది. దయచేసి సురక్షితంగా ఉండండి.";
+
+    targetLang = "te";
+
+  }else if(language === "hindi"){
+
+    message =
+      "चेतावनी। तेलंगाना में भारी बाढ़ की चेतावनी है। कृपया सुरक्षित रहें।";
+
+    targetLang = "hi";
+  }
+
+  const speech =
+    new SpeechSynthesisUtterance(message);
+
+  const voices =
+    speechSynthesis.getVoices();
+
+  const voice =
+    voices.find(v =>
+      v.lang.toLowerCase().startsWith(targetLang)
+    );
+
+  if(voice){
+
+    speech.voice = voice;
+  }
+
+  speech.lang =
+    targetLang + "-IN";
+
+  speechSynthesis.cancel();
+
+  speechSynthesis.speak(speech);
+}
+</script>
+
+<script>
+
+window.speechSynthesis.onvoiceschanged = () => {
+
+  console.log(
+    speechSynthesis.getVoices()
+  );
+
+};
+
+</script>
+<script>
+
+function activateSOS(){
+
+  alert(
+
+    "🚨 SOS ALERT SENT TO EMERGENCY SERVICES"
+  );
+
+  // Voice Alert
+
+  const speech = new SpeechSynthesisUtterance(
+
+    "Emergency SOS alert activated. Rescue teams have been notified."
+
+  );
+
+  speech.lang = "en-US";
+
+  window.speechSynthesis.speak(speech);
+
+  // Get User Location
+
+  if(navigator.geolocation){
+
+    navigator.geolocation.getCurrentPosition(
+
+      (position) => {
+
+        console.log(
+
+          "Latitude:",
+
+          position.coords.latitude
+        );
+
+        console.log(
+
+          "Longitude:",
+
+          position.coords.longitude
+        );
+
+      }
+    );
+  }
+}
+</script>
+<script>
+  async function getNews(){
+
+  const response = await fetch(
+    "https://disaster-system-backend.onrender.com/news"
+  );
+
+  const data = await response.json();
+
+  let output = "";
+
+  data.articles.slice(0,5).forEach((news)=>{
+
+    output += `
+      <div class="news-card">
+        <h3>${news.title}</h3>
+        <p>${news.description || ""}</p>
+        <a href="${news.url}" target="_blank">
+          Read More
+        </a>
+      </div>
+    `;
+
+  });
+
+  document.getElementById(
+    "newsContainer"
+  ).innerHTML = output;
+
+}
+
+</script>
+<script>
+
+async function loadStatistics(){
+
+  try{
+
+    const response = await fetch(
+
+      "https://disaster-system-backend.onrender.com/incidents"
+    );
+
+    const data = await response.json();
+
+    document.getElementById(
+      "totalReports"
+    ).innerText = data.length;
+
+    const flood =
+      data.filter(
+        item =>
+          item.disasterType === "Flood"
+      ).length;
+
+    const earthquake =
+      data.filter(
+        item =>
+          item.disasterType === "Earthquake"
+      ).length;
+
+    const cyclone =
+      data.filter(
+        item =>
+          item.disasterType === "Cyclone"
+      ).length;
+
+    document.getElementById(
+      "floodCount"
+    ).innerText = flood;
+
+    document.getElementById(
+      "earthquakeCount"
+    ).innerText = earthquake;
+
+    document.getElementById(
+      "cycloneCount"
+    ).innerText = cyclone;
+
+  }
+
+  catch(error){
+
+    console.log(error);
+  }
+}
+
+loadStatistics();
+
+</script>
+<script>
+
+async function loadIncidents(){
+
+  try{
+
+    const response = await fetch(
+
+      "https://disaster-system-backend.onrender.com/incidents"
+    );
+
+    const data = await response.json();
+
+    let output = "";
+
+    data.reverse().forEach((incident) => {
+
+      output += `
+
+        <div class="incident-card">
+
+          <h3>
+            ${incident.disasterType}
+          </h3>
+
+          <p>
+            📍 ${incident.location}
+          </p>
+
+          <p>
+            📝 ${incident.description}
+          </p>
+
+          <p>
+            📅 ${new Date(
+              incident.createdAt
+            ).toLocaleString()}
+          </p>
+
+        </div>
+
+      `;
+    });
+
+    document.getElementById(
+      "incidentContainer"
+    ).innerHTML = output;
+
+  }
+
+  catch(error){
+
+    console.log(error);
+  }
+}
+
+loadIncidents();
+
+
+</script>
+
+<script>
+
+if(
+  !localStorage.getItem("isLoggedIn")
+){
+
+  alert("Please Login First");
+
+  window.location.href =
+    "login.html";
+}
+
+</script>
+  <script src="script.js"></script>
+</body>
+
+</html>                  
