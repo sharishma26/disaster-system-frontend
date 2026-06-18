@@ -786,16 +786,12 @@ async function assignTeam(){
   );
 
   const teams = await teamResponse.json();
-  console.log("Entered ID:", teamId);
-
-  console.log("Teams:", teams);
-
-  console.log("First Team:", teams[0]);
+  
 
   const team = teams.find(
     t => t.teamId.toUpperCase() === teamId.toUpperCase()
   );
-
+alert(team ? team.teamName : "Team Not Found");
   if(team){
 
     const rescueIcon = L.icon({
