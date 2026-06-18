@@ -788,7 +788,7 @@ async function assignTeam(){
   const teams = await teamResponse.json();
 
   const team = teams.find(
-    t => t._id === teamId
+    t => t.teamId.toUpperCase() === teamId.toUpperCase()
   );
 
   if(team){
