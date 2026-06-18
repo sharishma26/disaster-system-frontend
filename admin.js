@@ -734,7 +734,7 @@ function createAnalyticsCharts(incidents){
 loadIncidents();
 setInterval(() => {
 
-  loadIncidents();
+  //loadIncidents();
   loadRescues();
   loadSOS();
 
