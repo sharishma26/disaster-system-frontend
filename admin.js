@@ -802,25 +802,24 @@ alert(team ? team.teamName : "Team Not Found");
   });
 
 
-    L.marker(
-      [
-        team.latitude,
-        team.longitude
-      ],
-      {
-        icon: rescueIcon
-      }
-    )
-    .addTo(mapInstance)
-    .bindPopup(
-      `🚑 ${team.teamName}`
-    );
-
+    window.assignedTeamMarker = L.marker(
+  [
+    team.latitude,
+    team.longitude
+  ],
+  {
+    icon: rescueIcon
   }
-
+)
+.addTo(mapInstance)
+.bindPopup(
+  `🚑 ${team.teamId} - ${team.teamName}`
+)
+.openPopup();
    //loadIncidents();
 
   }
+}
 
   catch(error){
 
