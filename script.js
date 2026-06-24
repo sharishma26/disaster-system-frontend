@@ -231,7 +231,7 @@ async function loadIncidents(){
         </p>
 
         <img
-          src="https://disaster-system-backend.onrender.com/uploads/${incident.image}"
+          src="${incident.image}"
           width="100%"
           style="
             border-radius:10px;

@@ -108,7 +108,7 @@ function displayIncidents(incidents){
           ?
 
           `<img
-            src="https://disaster-system-backend.onrender.com/uploads/${incident.image}"
+            src="${incident.image}"
             alt="Disaster Image"
             class="incident-image"
           />`
