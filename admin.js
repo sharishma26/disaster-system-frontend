@@ -96,7 +96,9 @@ function displayIncidents(incidents){
 
         <p>
 📞 Phone:
+<a href="tel:${incident.phone}">
 ${incident.phone}
+</a>
 </p>
 
         <p>
