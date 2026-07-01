@@ -68,7 +68,11 @@ form.addEventListener(
         "location"
       ).value
     );
-
+    formData.append(
+  "phone",
+  document.getElementById("phone").value
+);
+    
     formData.append(
 
       "description",

@@ -95,6 +95,11 @@ function displayIncidents(incidents){
         </p>
 
         <p>
+📞 Phone:
+${incident.phone}
+</p>
+
+        <p>
 
           <b>📝 Description:</b>
 
